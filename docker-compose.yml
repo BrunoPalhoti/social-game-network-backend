@@ -33,6 +33,8 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      # Para o seed/população dos mocks: disponibiliza mockUsers.json do frontend no container do backend.
+      - ../social-game-network-frontend/src/data/mockUsers.json:/app/mockUsers.json:ro
     depends_on:
       postgres:
         condition: service_healthy
