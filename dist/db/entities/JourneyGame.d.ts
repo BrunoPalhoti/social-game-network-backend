@@ -1,0 +1,30 @@
+import { JourneyStatus } from "../journey-status.enum";
+import { Genre } from "./Genre";
+import { User } from "./User";
+import { JourneyGameGenre } from "./JourneyGameGenre";
+import { Platform } from "./Platform";
+export declare class JourneyGame {
+    id: number;
+    userId: string;
+    user?: User;
+    rawgGameId: string;
+    name: string;
+    coverImageUrl?: string | null;
+    status: JourneyStatus;
+    startedAt?: string | null;
+    completedAt?: string | null;
+    droppedAt?: string | null;
+    hoursPlayed?: number | null;
+    rating?: string | number | null;
+    platformId?: number | null;
+    platform?: Platform | null;
+    monthKey: string;
+    notes?: string | null;
+    verdict?: string | null;
+    is100Percent?: boolean | null;
+    droppedReason?: string | null;
+    releaseDate?: string | null;
+    hasDemo?: boolean | null;
+    journeyGameGenres?: JourneyGameGenre[];
+    genres?: Genre[];
+}
