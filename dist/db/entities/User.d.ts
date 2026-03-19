@@ -1,5 +1,5 @@
-import { JourneyGame } from "./JourneyGame";
-import { UserPlatform } from "./UserPlatform";
+import { JourneyGame } from './JourneyGame';
+import { UserPlatform } from './UserPlatform';
 export declare class User {
     id: string;
     username: string;

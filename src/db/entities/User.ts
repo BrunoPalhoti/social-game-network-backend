@@ -1,52 +1,57 @@
-import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { JourneyGame } from "./JourneyGame";
-import { UserPlatform } from "./UserPlatform";
-import { JourneyGameGenre } from "./JourneyGameGenre";
+import {
+  Column,
+  Entity,
+  Index,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { JourneyGame } from './JourneyGame';
+import { UserPlatform } from './UserPlatform';
 
-@Entity({ name: "users" })
+@Entity({ name: 'users' })
 export class User {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id!: string;
 
   @Index({ unique: true })
-  @Column({ type: "text" })
+  @Column({ type: 'text' })
   username!: string;
 
   @Index({ unique: true })
-  @Column({ type: "text" })
+  @Column({ type: 'text' })
   email!: string;
 
-  @Column({ type: "text", name: "password_hash" })
+  @Column({ type: 'text', name: 'password_hash' })
   passwordHash!: string;
 
-  @Column({ type: "text" })
+  @Column({ type: 'text' })
   name!: string;
 
-  @Column({ type: "text" })
+  @Column({ type: 'text' })
   nickname!: string;
 
-  @Column({ type: "timestamptz", name: "created_at", default: () => "now()" })
+  @Column({ type: 'timestamptz', name: 'created_at', default: () => 'now()' })
   createdAt!: Date;
 
-  @Column({ type: "text", name: "avatar_url", nullable: true })
+  @Column({ type: 'text', name: 'avatar_url', nullable: true })
   avatarUrl?: string | null;
 
-  @Column({ type: "text", name: "banner_url", nullable: true })
+  @Column({ type: 'text', name: 'banner_url', nullable: true })
   bannerUrl?: string | null;
 
-  @Column({ type: "text", name: "banner_position", nullable: true })
+  @Column({ type: 'text', name: 'banner_position', nullable: true })
   bannerPosition?: string | null;
 
-  @Column({ type: "text", name: "favorite_game_name", nullable: true })
+  @Column({ type: 'text', name: 'favorite_game_name', nullable: true })
   favoriteGameName?: string | null;
 
-  @Column({ type: "text", name: "favorite_game_cover", nullable: true })
+  @Column({ type: 'text', name: 'favorite_game_cover', nullable: true })
   favoriteGameCover?: string | null;
 
-  @Column({ type: "text", name: "favorite_genre_name", nullable: true })
+  @Column({ type: 'text', name: 'favorite_genre_name', nullable: true })
   favoriteGenreName?: string | null;
 
-  @Column({ type: "text", name: "favorite_genre_cover", nullable: true })
+  @Column({ type: 'text', name: 'favorite_genre_cover', nullable: true })
   favoriteGenreCover?: string | null;
 
   // Relações (mantidas aqui para permitir futuras queries/repositórios)
@@ -57,4 +62,3 @@ export class User {
   @OneToMany(() => JourneyGame, (jg) => jg.user)
   journeyGames?: JourneyGame[];
 }
-

@@ -1,8 +1,8 @@
-import { JourneyStatus } from "../journey-status.enum";
-import { Genre } from "./Genre";
-import { User } from "./User";
-import { JourneyGameGenre } from "./JourneyGameGenre";
-import { Platform } from "./Platform";
+import { JourneyStatus } from '../journey-status.enum';
+import { Genre } from './Genre';
+import { User } from './User';
+import { JourneyGameGenre } from './JourneyGameGenre';
+import { Platform } from './Platform';
 export declare class JourneyGame {
     id: number;
     userId: string;

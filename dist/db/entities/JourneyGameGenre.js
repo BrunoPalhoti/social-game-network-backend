@@ -21,24 +21,26 @@ let JourneyGameGenre = class JourneyGameGenre {
 };
 exports.JourneyGameGenre = JourneyGameGenre;
 __decorate([
-    (0, typeorm_1.PrimaryColumn)({ type: "bigint", name: "journey_game_id" }),
+    (0, typeorm_1.PrimaryColumn)({ type: 'bigint', name: 'journey_game_id' }),
     __metadata("design:type", Number)
 ], JourneyGameGenre.prototype, "journeyGameId", void 0);
 __decorate([
-    (0, typeorm_1.PrimaryColumn)({ type: "bigint", name: "genre_id" }),
+    (0, typeorm_1.PrimaryColumn)({ type: 'bigint', name: 'genre_id' }),
     __metadata("design:type", Number)
 ], JourneyGameGenre.prototype, "genreId", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => JourneyGame_1.JourneyGame, (jg) => jg.journeyGameGenres, { onDelete: "CASCADE" }),
-    (0, typeorm_1.JoinColumn)({ name: "journey_game_id" }),
+    (0, typeorm_1.ManyToOne)(() => JourneyGame_1.JourneyGame, (jg) => jg.journeyGameGenres, {
+        onDelete: 'CASCADE',
+    }),
+    (0, typeorm_1.JoinColumn)({ name: 'journey_game_id' }),
     __metadata("design:type", JourneyGame_1.JourneyGame)
 ], JourneyGameGenre.prototype, "journeyGame", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => Genre_1.Genre, (g) => g.journeyGameGenres, { onDelete: "CASCADE" }),
-    (0, typeorm_1.JoinColumn)({ name: "genre_id" }),
+    (0, typeorm_1.ManyToOne)(() => Genre_1.Genre, (g) => g.journeyGameGenres, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.JoinColumn)({ name: 'genre_id' }),
     __metadata("design:type", Genre_1.Genre)
 ], JourneyGameGenre.prototype, "genre", void 0);
 exports.JourneyGameGenre = JourneyGameGenre = __decorate([
-    (0, typeorm_1.Entity)({ name: "journey_game_genres" })
+    (0, typeorm_1.Entity)({ name: 'journey_game_genres' })
 ], JourneyGameGenre);
 //# sourceMappingURL=JourneyGameGenre.js.map

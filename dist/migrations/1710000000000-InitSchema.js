@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InitSchema1710000000000 = void 0;
 class InitSchema1710000000000 {
-    name = "InitSchema1710000000000";
+    name = 'InitSchema1710000000000';
     async up(queryRunner) {
         await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS pgcrypto;`);
         await queryRunner.query(`

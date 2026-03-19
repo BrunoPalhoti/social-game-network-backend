@@ -21,24 +21,24 @@ let UserPlatform = class UserPlatform {
 };
 exports.UserPlatform = UserPlatform;
 __decorate([
-    (0, typeorm_1.PrimaryColumn)({ type: "uuid", name: "user_id" }),
+    (0, typeorm_1.PrimaryColumn)({ type: 'uuid', name: 'user_id' }),
     __metadata("design:type", String)
 ], UserPlatform.prototype, "userId", void 0);
 __decorate([
-    (0, typeorm_1.PrimaryColumn)({ type: "bigint", name: "platform_id" }),
+    (0, typeorm_1.PrimaryColumn)({ type: 'bigint', name: 'platform_id' }),
     __metadata("design:type", Number)
 ], UserPlatform.prototype, "platformId", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => User_1.User, (u) => u.userPlatforms, { onDelete: "CASCADE" }),
-    (0, typeorm_1.JoinColumn)({ name: "user_id" }),
+    (0, typeorm_1.ManyToOne)(() => User_1.User, (u) => u.userPlatforms, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.JoinColumn)({ name: 'user_id' }),
     __metadata("design:type", User_1.User)
 ], UserPlatform.prototype, "user", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => Platform_1.Platform, (p) => p.userPlatforms, { onDelete: "CASCADE" }),
-    (0, typeorm_1.JoinColumn)({ name: "platform_id" }),
+    (0, typeorm_1.ManyToOne)(() => Platform_1.Platform, (p) => p.userPlatforms, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.JoinColumn)({ name: 'platform_id' }),
     __metadata("design:type", Platform_1.Platform)
 ], UserPlatform.prototype, "platform", void 0);
 exports.UserPlatform = UserPlatform = __decorate([
-    (0, typeorm_1.Entity)({ name: "user_platforms" })
+    (0, typeorm_1.Entity)({ name: 'user_platforms' })
 ], UserPlatform);
 //# sourceMappingURL=UserPlatform.js.map

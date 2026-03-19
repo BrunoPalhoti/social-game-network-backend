@@ -17,6 +17,7 @@ const Genre_1 = require("./db/entities/Genre");
 const UserPlatform_1 = require("./db/entities/UserPlatform");
 const JourneyGame_1 = require("./db/entities/JourneyGame");
 const JourneyGameGenre_1 = require("./db/entities/JourneyGameGenre");
+const api_module_1 = require("./api/api.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -24,12 +25,20 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forRoot({
-                type: "postgres",
+                type: 'postgres',
                 url: process.env.DATABASE_URL,
                 autoLoadEntities: false,
                 synchronize: false,
-                entities: [User_1.User, Platform_1.Platform, Genre_1.Genre, UserPlatform_1.UserPlatform, JourneyGame_1.JourneyGame, JourneyGameGenre_1.JourneyGameGenre],
+                entities: [
+                    User_1.User,
+                    Platform_1.Platform,
+                    Genre_1.Genre,
+                    UserPlatform_1.UserPlatform,
+                    JourneyGame_1.JourneyGame,
+                    JourneyGameGenre_1.JourneyGameGenre,
+                ],
             }),
+            api_module_1.ApiModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

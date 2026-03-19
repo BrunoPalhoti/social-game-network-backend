@@ -10,7 +10,7 @@ const JourneyGame_1 = require("../db/entities/JourneyGame");
 const JourneyGameGenre_1 = require("../db/entities/JourneyGameGenre");
 const journey_status_enum_1 = require("../db/journey-status.enum");
 function normalizeDateToYYYYMMDD(value) {
-    if (typeof value !== "string")
+    if (typeof value !== 'string')
         return null;
     const s = value.trim();
     if (!s)
@@ -18,7 +18,7 @@ function normalizeDateToYYYYMMDD(value) {
     return s.length >= 10 ? s.slice(0, 10) : s;
 }
 function normalizeMonthKey(game) {
-    const mk = (game.monthKey ?? "").trim();
+    const mk = (game.monthKey ?? '').trim();
     if (/^[0-9]{4}-[0-9]{2}$/.test(mk))
         return mk;
     const date = game.completedAt ?? game.startedAt ?? game.droppedAt;
@@ -30,9 +30,9 @@ function normalizeMonthKey(game) {
 function normalizeHoursPlayed(value) {
     if (value === undefined || value === null)
         return null;
-    const n = typeof value === "number"
+    const n = typeof value === 'number'
         ? value
-        : typeof value === "string"
+        : typeof value === 'string'
             ? Number.parseFloat(value)
             : NaN;
     if (!Number.isFinite(n) || n < 0)
@@ -40,48 +40,48 @@ function normalizeHoursPlayed(value) {
     return Math.round(n);
 }
 function normalizeStatus(value) {
-    const s = typeof value === "string" ? value.trim() : "";
+    const s = typeof value === 'string' ? value.trim() : '';
     if (s in journey_status_enum_1.JourneyStatus)
         return s;
     return journey_status_enum_1.JourneyStatus.COMPLETED;
 }
 class SeedMockUsers1710000000001 {
-    name = "SeedMockUsers1710000000001";
+    name = 'SeedMockUsers1710000000001';
     async up(queryRunner) {
-        const mockUsersPath = process.env.MOCK_USERS_PATH?.trim() || "/app/mockUsers.json";
+        if (process.env.ENABLE_MOCK_SEED !== 'true')
+            return;
+        const mockUsersPath = process.env.MOCK_USERS_PATH?.trim() || '/app/mockUsers.json';
         const userCount = await queryRunner.manager.getRepository(User_1.User).count();
         if (userCount > 0)
             return;
-        const raw = await (0, promises_1.readFile)(mockUsersPath, "utf-8");
+        const raw = await (0, promises_1.readFile)(mockUsersPath, 'utf-8');
         const parsed = JSON.parse(raw);
         const mockUsers = Array.isArray(parsed.users) ? parsed.users : [];
         const platformNames = new Set();
         const genreNames = new Set();
         for (const u of mockUsers) {
             const userPlatforms = Array.isArray(u.platforms) && u.platforms.length > 0
-                ? u.platforms
-                    .map((p) => (p?.name ?? "").trim())
-                    .filter(Boolean)
+                ? u.platforms.map((p) => (p?.name ?? '').trim()).filter(Boolean)
                 : u.platform
                     ? [u.platform.trim()]
                     : [];
             for (const pn of userPlatforms)
                 platformNames.add(pn);
-            const favGenre = (u.favoriteGenre ?? "").trim() ||
+            const favGenre = (u.favoriteGenre ?? '').trim() ||
                 (Array.isArray(u.favoriteGenres) && u.favoriteGenres[0]?.name
                     ? u.favoriteGenres[0].name.trim()
-                    : "");
+                    : '');
             if (favGenre)
                 genreNames.add(favGenre);
             const journeyByYear = u.journeyByYear ?? {};
             for (const year of Object.keys(journeyByYear)) {
                 const games = journeyByYear[year] ?? [];
                 for (const g of games) {
-                    const p = (g.platform ?? "").trim();
+                    const p = (g.platform ?? '').trim();
                     if (p)
                         platformNames.add(p);
                     for (const gn of g.genres ?? []) {
-                        const clean = (gn ?? "").trim();
+                        const clean = (gn ?? '').trim();
                         if (clean)
                             genreNames.add(clean);
                     }
@@ -98,9 +98,9 @@ class SeedMockUsers1710000000001 {
         const genreByName = new Map(genres.map((g) => [g.name, g]));
         const userRepo = queryRunner.manager.getRepository(User_1.User);
         const users = mockUsers.map((u) => {
-            const username = (u.username ?? "").trim().toLowerCase();
-            const email = (u.email ?? "").trim().toLowerCase();
-            const password = (u.password ?? "123456").toString();
+            const username = (u.username ?? '').trim().toLowerCase();
+            const email = (u.email ?? '').trim().toLowerCase();
+            const password = (u.password ?? '123456').toString();
             return userRepo.create({
                 id: u.id,
                 username,
@@ -111,17 +111,15 @@ class SeedMockUsers1710000000001 {
                 createdAt: u.createdAt ? new Date(u.createdAt) : undefined,
                 avatarUrl: u.avatarUrl ?? null,
                 bannerUrl: u.bannerUrl ?? null,
-                bannerPosition: typeof u.bannerPosition === "number"
+                bannerPosition: typeof u.bannerPosition === 'number'
                     ? String(u.bannerPosition)
-                    : u.bannerPosition ?? null,
+                    : (u.bannerPosition ?? null),
                 favoriteGameName: u.favoriteGame ?? null,
                 favoriteGameCover: u.favoriteGameCover ?? null,
                 favoriteGenreName: (u.favoriteGenre ??
                     u.favoriteGenres?.[0]?.name ??
                     null)?.toString() ?? null,
-                favoriteGenreCover: u.favoriteGenreCover ??
-                    u.favoriteGenres?.[0]?.imageUrl ??
-                    null,
+                favoriteGenreCover: u.favoriteGenreCover ?? u.favoriteGenres?.[0]?.imageUrl ?? null,
             });
         });
         await userRepo.save(users);
@@ -132,9 +130,7 @@ class SeedMockUsers1710000000001 {
             if (!user)
                 continue;
             const userPlatforms = Array.isArray(u.platforms) && u.platforms.length > 0
-                ? u.platforms
-                    .map((p) => (p?.name ?? "").trim())
-                    .filter(Boolean)
+                ? u.platforms.map((p) => (p?.name ?? '').trim()).filter(Boolean)
                 : u.platform
                     ? [u.platform.trim()]
                     : [];
@@ -162,15 +158,15 @@ class SeedMockUsers1710000000001 {
                     const monthKey = normalizeMonthKey(g);
                     if (!monthKey)
                         continue;
-                    const platformName = (g.platform ?? "").trim();
+                    const platformName = (g.platform ?? '').trim();
                     const platform = platformName
                         ? platformByName.get(platformName)
                         : undefined;
                     const status = normalizeStatus(g.status);
                     const entity = journeyGameRepo.create({
                         userId: user.id,
-                        rawgGameId: (g.id ?? "").toString(),
-                        name: (g.name ?? "").toString(),
+                        rawgGameId: (g.id ?? '').toString(),
+                        name: (g.name ?? '').toString(),
                         coverImageUrl: g.coverImageUrl ?? null,
                         status,
                         startedAt: normalizeDateToYYYYMMDD(g.startedAt),
@@ -187,7 +183,9 @@ class SeedMockUsers1710000000001 {
                         hasDemo: g.hasDemo ?? null,
                     });
                     const key = `${entity.userId}|${entity.monthKey}|${entity.rawgGameId}`;
-                    pendingGenresByGameKey.set(key, { genres: (g.genres ?? []).filter(Boolean) });
+                    pendingGenresByGameKey.set(key, {
+                        genres: (g.genres ?? []).filter(Boolean),
+                    });
                     journeyGamesToSave.push(entity);
                 }
             }
@@ -205,7 +203,7 @@ class SeedMockUsers1710000000001 {
             if (!pending)
                 continue;
             for (const genreName of pending.genres) {
-                const clean = (genreName ?? "").trim();
+                const clean = (genreName ?? '').trim();
                 if (!clean)
                     continue;
                 const genre = genreByName.get(clean);
@@ -221,7 +219,9 @@ class SeedMockUsers1710000000001 {
             await journeyGameGenreRepo.save(joinsToSave);
         }
     }
-    async down(_queryRunner) {
+    down(_queryRunner) {
+        void _queryRunner;
+        return Promise.resolve();
     }
 }
 exports.SeedMockUsers1710000000001 = SeedMockUsers1710000000001;

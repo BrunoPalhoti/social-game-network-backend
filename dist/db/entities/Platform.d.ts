@@ -1,4 +1,4 @@
-import { UserPlatform } from "./UserPlatform";
+import { UserPlatform } from './UserPlatform';
 export declare class Platform {
     id: number;
     name: string;

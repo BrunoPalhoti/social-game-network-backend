@@ -1,16 +1,21 @@
-import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { JourneyGameGenre } from "./JourneyGameGenre";
+import {
+  Column,
+  Entity,
+  Index,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { JourneyGameGenre } from './JourneyGameGenre';
 
-@Entity({ name: "genres" })
+@Entity({ name: 'genres' })
 export class Genre {
-  @PrimaryGeneratedColumn("increment")
+  @PrimaryGeneratedColumn('increment')
   id!: number;
 
   @Index({ unique: true })
-  @Column({ type: "text" })
+  @Column({ type: 'text' })
   name!: string;
 
   @OneToMany(() => JourneyGameGenre, (jgg) => jgg.genre)
   journeyGameGenres?: JourneyGameGenre[];
 }
-

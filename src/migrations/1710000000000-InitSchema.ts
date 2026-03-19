@@ -1,7 +1,7 @@
-import { MigrationInterface, QueryRunner } from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InitSchema1710000000000 implements MigrationInterface {
-  name = "InitSchema1710000000000";
+  name = 'InitSchema1710000000000';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS pgcrypto;`);
@@ -139,4 +139,3 @@ export class InitSchema1710000000000 implements MigrationInterface {
     await queryRunner.query(`DROP TYPE IF EXISTS journey_status;`);
   }
 }
-

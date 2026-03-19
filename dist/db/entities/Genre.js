@@ -19,12 +19,12 @@ let Genre = class Genre {
 };
 exports.Genre = Genre;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)("increment"),
+    (0, typeorm_1.PrimaryGeneratedColumn)('increment'),
     __metadata("design:type", Number)
 ], Genre.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Index)({ unique: true }),
-    (0, typeorm_1.Column)({ type: "text" }),
+    (0, typeorm_1.Column)({ type: 'text' }),
     __metadata("design:type", String)
 ], Genre.prototype, "name", void 0);
 __decorate([
@@ -32,6 +32,6 @@ __decorate([
     __metadata("design:type", Array)
 ], Genre.prototype, "journeyGameGenres", void 0);
 exports.Genre = Genre = __decorate([
-    (0, typeorm_1.Entity)({ name: "genres" })
+    (0, typeorm_1.Entity)({ name: 'genres' })
 ], Genre);
 //# sourceMappingURL=Genre.js.map

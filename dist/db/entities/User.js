@@ -33,61 +33,61 @@ let User = class User {
 };
 exports.User = User;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
 ], User.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Index)({ unique: true }),
-    (0, typeorm_1.Column)({ type: "text" }),
+    (0, typeorm_1.Column)({ type: 'text' }),
     __metadata("design:type", String)
 ], User.prototype, "username", void 0);
 __decorate([
     (0, typeorm_1.Index)({ unique: true }),
-    (0, typeorm_1.Column)({ type: "text" }),
+    (0, typeorm_1.Column)({ type: 'text' }),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text", name: "password_hash" }),
+    (0, typeorm_1.Column)({ type: 'text', name: 'password_hash' }),
     __metadata("design:type", String)
 ], User.prototype, "passwordHash", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text" }),
+    (0, typeorm_1.Column)({ type: 'text' }),
     __metadata("design:type", String)
 ], User.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text" }),
+    (0, typeorm_1.Column)({ type: 'text' }),
     __metadata("design:type", String)
 ], User.prototype, "nickname", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "timestamptz", name: "created_at", default: () => "now()" }),
+    (0, typeorm_1.Column)({ type: 'timestamptz', name: 'created_at', default: () => 'now()' }),
     __metadata("design:type", Date)
 ], User.prototype, "createdAt", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text", name: "avatar_url", nullable: true }),
+    (0, typeorm_1.Column)({ type: 'text', name: 'avatar_url', nullable: true }),
     __metadata("design:type", Object)
 ], User.prototype, "avatarUrl", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text", name: "banner_url", nullable: true }),
+    (0, typeorm_1.Column)({ type: 'text', name: 'banner_url', nullable: true }),
     __metadata("design:type", Object)
 ], User.prototype, "bannerUrl", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text", name: "banner_position", nullable: true }),
+    (0, typeorm_1.Column)({ type: 'text', name: 'banner_position', nullable: true }),
     __metadata("design:type", Object)
 ], User.prototype, "bannerPosition", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text", name: "favorite_game_name", nullable: true }),
+    (0, typeorm_1.Column)({ type: 'text', name: 'favorite_game_name', nullable: true }),
     __metadata("design:type", Object)
 ], User.prototype, "favoriteGameName", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text", name: "favorite_game_cover", nullable: true }),
+    (0, typeorm_1.Column)({ type: 'text', name: 'favorite_game_cover', nullable: true }),
     __metadata("design:type", Object)
 ], User.prototype, "favoriteGameCover", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text", name: "favorite_genre_name", nullable: true }),
+    (0, typeorm_1.Column)({ type: 'text', name: 'favorite_genre_name', nullable: true }),
     __metadata("design:type", Object)
 ], User.prototype, "favoriteGenreName", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text", name: "favorite_genre_cover", nullable: true }),
+    (0, typeorm_1.Column)({ type: 'text', name: 'favorite_genre_cover', nullable: true }),
     __metadata("design:type", Object)
 ], User.prototype, "favoriteGenreCover", void 0);
 __decorate([
@@ -99,6 +99,6 @@ __decorate([
     __metadata("design:type", Array)
 ], User.prototype, "journeyGames", void 0);
 exports.User = User = __decorate([
-    (0, typeorm_1.Entity)({ name: "users" })
+    (0, typeorm_1.Entity)({ name: 'users' })
 ], User);
 //# sourceMappingURL=User.js.map

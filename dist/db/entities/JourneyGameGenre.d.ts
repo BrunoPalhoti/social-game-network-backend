@@ -1,5 +1,5 @@
-import { Genre } from "./Genre";
-import { JourneyGame } from "./JourneyGame";
+import { Genre } from './Genre';
+import { JourneyGame } from './JourneyGame';
 export declare class JourneyGameGenre {
     journeyGameId: number;
     genreId: number;

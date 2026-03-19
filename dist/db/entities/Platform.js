@@ -20,16 +20,16 @@ let Platform = class Platform {
 };
 exports.Platform = Platform;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)("increment"),
+    (0, typeorm_1.PrimaryGeneratedColumn)('increment'),
     __metadata("design:type", Number)
 ], Platform.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Index)({ unique: true }),
-    (0, typeorm_1.Column)({ type: "text" }),
+    (0, typeorm_1.Column)({ type: 'text' }),
     __metadata("design:type", String)
 ], Platform.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text", name: "image_url", nullable: true }),
+    (0, typeorm_1.Column)({ type: 'text', name: 'image_url', nullable: true }),
     __metadata("design:type", Object)
 ], Platform.prototype, "imageUrl", void 0);
 __decorate([
@@ -37,6 +37,6 @@ __decorate([
     __metadata("design:type", Array)
 ], Platform.prototype, "userPlatforms", void 0);
 exports.Platform = Platform = __decorate([
-    (0, typeorm_1.Entity)({ name: "platforms" })
+    (0, typeorm_1.Entity)({ name: 'platforms' })
 ], Platform);
 //# sourceMappingURL=Platform.js.map
