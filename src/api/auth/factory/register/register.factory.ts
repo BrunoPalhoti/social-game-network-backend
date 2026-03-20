@@ -8,4 +8,3 @@ export function registerFactory(payload: RegisterDto) {
 
   return { username, email, password };
 }
-

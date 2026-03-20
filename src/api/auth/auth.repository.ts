@@ -27,7 +27,6 @@ export class AuthRepository {
       id: randomUUID(),
       username: input.username,
       email: input.email,
-      // Seed dev usa senha em texto puro; mantemos igual para compatibilidade.
       passwordHash: input.passwordHash,
       name: input.name,
       nickname: input.nickname,

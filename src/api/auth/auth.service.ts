@@ -7,6 +7,7 @@ import { registerFactory } from './factory/register/register.factory.js';
 import { loginFactory } from './factory/login/login.factory.js';
 import { getUsersForAuthFactory } from './factory/getUsersForAuth/getUsersForAuth.factory.js';
 import { toAuthSnapshotFromUser } from './factory/toAuthSnapshotFromUser/toAuthSnapshotFromUser.factory.js';
+import { hashPassword, verifyPassword } from './password.js';
 import { User } from 'src/db/entities/User.js';
 
 @Injectable()
@@ -31,10 +32,11 @@ export class AuthService {
       );
     }
 
+    const passwordHash = await hashPassword(password);
     await this.authRepository.createUser({
       username,
       email,
-      passwordHash: password,
+      passwordHash,
       name: username,
       nickname: username,
     });
@@ -50,8 +52,8 @@ export class AuthService {
       throw new HttpException('Usuário ou senha inválidos.', 401);
     }
 
-    // Seed dev usa senha em texto puro; mantemos igual.
-    if (user.passwordHash !== password) {
+    const passwordOk = await verifyPassword(password, user.passwordHash);
+    if (!passwordOk) {
       throw new HttpException('Usuário ou senha inválidos.', 401);
     }
 

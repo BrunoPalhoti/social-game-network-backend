@@ -28,7 +28,10 @@ services:
       # Caso você adicione TypeORM/Prisma depois, já deixamos a URL pronta.
       DATABASE_URL: ${DATABASE_URL}
       RAWG_API_KEY: ${RAWG_API_KEY}
-    command: ["sh", "-c", "npm run migration:run && npm run start:dev"]
+    # npm ci: o volume anónimo /app/node_modules sobrepõe o da imagem; sem isto,
+    # dependências novas (ex.: bcrypt) ficam em falta até o volume ser recriado.
+    command:
+      ["sh", "-c", "npm ci && npm run migration:run && npm run start:dev"]
     ports:
       - "3000:3000"
     volumes:
