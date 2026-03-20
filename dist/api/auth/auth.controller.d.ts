@@ -11,4 +11,5 @@ export declare class AuthController {
         user: import("./types/auth.types.js").AuthUserSnapshot;
     }>;
     getUsersForAuth(): Promise<Record<string, import("./types/auth.types.js").AuthUserSnapshot>>;
+    getUserById(id: string): Promise<import("../../db/entities/User.js").User | null>;
 }

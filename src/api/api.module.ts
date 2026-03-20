@@ -8,12 +8,15 @@ import { JourneyGame } from '../db/entities/JourneyGame';
 import { JourneyGameGenre } from '../db/entities/JourneyGameGenre';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
-import { UsersController, UsersService } from './users/users.controller';
-import {
-  JourneysController,
-  JourneysService,
-} from './journeys/journeys.controller';
-import { GamerController, RawgProxyService } from './gamer/gamer.controller';
+import { UsersController } from './users/users.controller';
+import { UsersService } from './users/users.service';
+import { UsersRepository } from './users/users.repository';
+import { JourneysController } from './journeys/journeys.controller';
+import { JourneysService } from './journeys/journeys.service';
+import { JourneysRepository } from './journeys/journeys.repository';
+import { GamerController } from './gamer/gamer.controller';
+import { GamerService } from './gamer/gamer.service';
+import { RawgModule } from './rawg/rawg.module';
 import { AuthRepository } from './auth/auth.repository';
 
 @Module({
@@ -26,6 +29,7 @@ import { AuthRepository } from './auth/auth.repository';
       JourneyGame,
       JourneyGameGenre,
     ]),
+    RawgModule,
   ],
   controllers: [
     AuthController,
@@ -37,8 +41,10 @@ import { AuthRepository } from './auth/auth.repository';
     AuthService,
     AuthRepository,
     UsersService,
+    UsersRepository,
     JourneysService,
-    RawgProxyService,
+    JourneysRepository,
+    GamerService,
   ],
 })
 export class ApiModule {}

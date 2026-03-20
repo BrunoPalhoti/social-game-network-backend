@@ -31,6 +31,9 @@ let AuthController = class AuthController {
     getUsersForAuth() {
         return this.authService.getUsersForAuth();
     }
+    getUserById(id) {
+        return this.authService.getUserById(id);
+    }
 };
 exports.AuthController = AuthController;
 __decorate([
@@ -53,6 +56,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "getUsersForAuth", null);
+__decorate([
+    (0, common_1.Get)('users/:id'),
+    __param(0, (0, common_1.Param)('id', new common_1.ParseUUIDPipe())),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "getUserById", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)('api/auth'),
     __metadata("design:paramtypes", [auth_service_js_1.AuthService])

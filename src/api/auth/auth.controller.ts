@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseUUIDPipe,
+  Post,
+} from '@nestjs/common';
 import { LoginDto } from './dto/login.dto.js';
 import { RegisterDto } from './dto/register.dto.js';
 import { AuthService } from './auth.service.js';
@@ -20,5 +27,10 @@ export class AuthController {
   @Get('users')
   getUsersForAuth() {
     return this.authService.getUsersForAuth();
+  }
+
+  @Get('users/:id')
+  getUserById(@Param('id', new ParseUUIDPipe()) id: string) {
+    return this.authService.getUserById(id);
   }
 }

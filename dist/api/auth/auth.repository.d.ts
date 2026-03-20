@@ -11,6 +11,7 @@ export declare class AuthRepository {
         name: string;
         nickname: string;
     }): Promise<User>;
+    findUserById(id: string): Promise<User | null>;
     findUserWithPlatformsByUsername(username: string): Promise<User | null>;
     findAllUsersWithPlatformsOrdered(): Promise<User[]>;
 }

@@ -1,0 +1,9 @@
+@baseUrl = {{$dotenv API_BASE_URL}}
+
+# Não existe rota HTTP dedicada a RAWG neste projeto.
+# O backend precisa de RAWG_API_KEY no .env (ou no environment do Docker); senão a RAWG devolve 401.
+# O cliente RAWG é usado internamente pelo módulo gamer.
+# Para testar integração RAWG, usa rest-client/gamer.http:
+#   GET {{baseUrl}}/api/gamer/games
+#   GET {{baseUrl}}/api/gamer/platforms
+#   GET {{baseUrl}}/api/gamer/genres

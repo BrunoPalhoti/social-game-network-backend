@@ -7,6 +7,7 @@ import { registerFactory } from './factory/register/register.factory.js';
 import { loginFactory } from './factory/login/login.factory.js';
 import { getUsersForAuthFactory } from './factory/getUsersForAuth/getUsersForAuth.factory.js';
 import { toAuthSnapshotFromUser } from './factory/toAuthSnapshotFromUser/toAuthSnapshotFromUser.factory.js';
+import { User } from 'src/db/entities/User.js';
 
 @Injectable()
 export class AuthService {
@@ -61,5 +62,9 @@ export class AuthService {
   async getUsersForAuth(): Promise<Record<string, AuthUserSnapshot>> {
     const users = await this.authRepository.findAllUsersWithPlatformsOrdered();
     return getUsersForAuthFactory(users);
+  }
+
+  async getUserById(id: string): Promise<User | null> {
+    return this.authRepository.findUserById(id);
   }
 }

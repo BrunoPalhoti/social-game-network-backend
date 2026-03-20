@@ -18,8 +18,14 @@ const JourneyGameGenre_1 = require("../db/entities/JourneyGameGenre");
 const auth_controller_1 = require("./auth/auth.controller");
 const auth_service_1 = require("./auth/auth.service");
 const users_controller_1 = require("./users/users.controller");
+const users_service_1 = require("./users/users.service");
+const users_repository_1 = require("./users/users.repository");
 const journeys_controller_1 = require("./journeys/journeys.controller");
+const journeys_service_1 = require("./journeys/journeys.service");
+const journeys_repository_1 = require("./journeys/journeys.repository");
 const gamer_controller_1 = require("./gamer/gamer.controller");
+const gamer_service_1 = require("./gamer/gamer.service");
+const rawg_module_1 = require("./rawg/rawg.module");
 const auth_repository_1 = require("./auth/auth.repository");
 let ApiModule = class ApiModule {
 };
@@ -35,6 +41,7 @@ exports.ApiModule = ApiModule = __decorate([
                 JourneyGame_1.JourneyGame,
                 JourneyGameGenre_1.JourneyGameGenre,
             ]),
+            rawg_module_1.RawgModule,
         ],
         controllers: [
             auth_controller_1.AuthController,
@@ -45,9 +52,11 @@ exports.ApiModule = ApiModule = __decorate([
         providers: [
             auth_service_1.AuthService,
             auth_repository_1.AuthRepository,
-            users_controller_1.UsersService,
-            journeys_controller_1.JourneysService,
-            gamer_controller_1.RawgProxyService,
+            users_service_1.UsersService,
+            users_repository_1.UsersRepository,
+            journeys_service_1.JourneysService,
+            journeys_repository_1.JourneysRepository,
+            gamer_service_1.GamerService,
         ],
     })
 ], ApiModule);

@@ -1,4 +1,5 @@
-@baseUrl = http://localhost:3000
+# Valor vem do .env (API_BASE_URL); @baseUrl é o nome que o REST Client resolve em {{baseUrl}}
+@baseUrl = {{$dotenv API_BASE_URL}}
 
 ### Auth - Register
 POST {{baseUrl}}/api/auth/register
@@ -22,3 +23,7 @@ Content-Type: application/json
 ### Auth - Get Users For Auth
 GET {{baseUrl}}/api/auth/users
 
+### Auth - Get User By ID
+# id é UUID (ver entidade User). Ex.: "1" faz o Postgres rejeitar e antes dava 500.
+# Substitua por um id real: SELECT id FROM users LIMIT 1;
+GET {{baseUrl}}/api/auth/users/a1b2c3d4-0001-4000-8000-000000000001

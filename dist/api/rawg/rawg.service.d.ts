@@ -1,0 +1,22 @@
+import { RawgClient } from './rawg.client.js';
+import type { RawgGame, RawgGamesResponse, RawgGenre, RawgPlatform } from './types/rawg.types.js';
+export declare class RawgService {
+    private readonly rawgClient;
+    constructor(rawgClient: RawgClient);
+    games(params: {
+        page?: number;
+        page_size?: number;
+        search?: string;
+        ordering?: string;
+    }): Promise<RawgGamesResponse<RawgGame>>;
+    platforms(params: {
+        page?: number;
+        page_size?: number;
+        ordering?: string;
+    }): Promise<RawgGamesResponse<RawgPlatform>>;
+    genres(params: {
+        page?: number;
+        page_size?: number;
+        ordering?: string;
+    }): Promise<RawgGamesResponse<RawgGenre>>;
+}

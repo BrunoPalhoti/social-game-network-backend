@@ -1,0 +1,15 @@
+@baseUrl = {{$dotenv API_BASE_URL}}
+
+### Gamer - listar jogos (RAWG via backend)
+# Query opcional: page, page_size, search, ordering
+GET {{baseUrl}}/api/gamer/games?page=1&page_size=10
+
+### Gamer - listar jogos com pesquisa
+GET {{baseUrl}}/api/gamer/games?search=zelda&page_size=5
+
+### Gamer - plataformas (RAWG)
+# Query opcional: page, page_size, ordering
+GET {{baseUrl}}/api/gamer/platforms?page=1&page_size=20
+
+### Gamer - géneros (RAWG)
+GET {{baseUrl}}/api/gamer/genres?page=1&page_size=20

@@ -37,6 +37,12 @@ export class AuthRepository {
     return this.usersRepo.save(user);
   }
 
+  async findUserById(id: string): Promise<User | null> {
+    return this.usersRepo.findOne({
+      where: { id },
+    });
+  }
+
   async findUserWithPlatformsByUsername(
     username: string,
   ): Promise<User | null> {

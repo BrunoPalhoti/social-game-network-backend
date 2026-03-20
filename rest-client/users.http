@@ -1,0 +1,21 @@
+@baseUrl = {{$dotenv API_BASE_URL}}
+@username = brunogameplay
+
+### Users - perfil público
+GET {{baseUrl}}/api/users/{{username}}
+
+### Users - atualizar perfil
+PATCH {{baseUrl}}/api/users/{{username}}/profile
+Content-Type: application/json
+
+{
+  "favoriteGame": "Elden Ring",
+  "favoriteGameCover": "https://example.com/cover.jpg",
+  "favoriteGenre": "Souls-like",
+  "avatarUrl": null,
+  "bannerUrl": null,
+  "bannerPosition": "center",
+  "platforms": [
+    { "name": "PC", "imageUrl": null }
+  ]
+}

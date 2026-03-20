@@ -40,6 +40,11 @@ let AuthRepository = class AuthRepository {
         });
         return this.usersRepo.save(user);
     }
+    async findUserById(id) {
+        return this.usersRepo.findOne({
+            where: { id },
+        });
+    }
     async findUserWithPlatformsByUsername(username) {
         return this.usersRepo.findOne({
             where: { username },

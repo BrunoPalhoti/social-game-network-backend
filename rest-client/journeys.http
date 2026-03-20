@@ -1,0 +1,34 @@
+@baseUrl = {{$dotenv API_BASE_URL}}
+@username = brunogameplay
+@year = 2025
+@rawgGameId = 3498
+
+### Journeys - ver ano de um utilizador
+GET {{baseUrl}}/api/journeys/{{username}}/{{year}}
+
+### Journeys - adicionar jogo ao ano
+POST {{baseUrl}}/api/journeys/{{username}}/{{year}}/games
+Content-Type: application/json
+
+{
+  "id": "{{rawgGameId}}",
+  "name": "Grand Theft Auto V",
+  "coverImageUrl": "https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg",
+  "startedAt": "2025-01-15",
+  "status": "PLAYING",
+  "genres": ["Action"],
+  "platform": "PC"
+}
+
+### Journeys - atualizar jogo no ano
+PATCH {{baseUrl}}/api/journeys/{{username}}/{{year}}/games/{{rawgGameId}}
+Content-Type: application/json
+
+{
+  "status": "COMPLETED",
+  "completedAt": "2025-03-01",
+  "rating": 9
+}
+
+### Journeys - limpar todos os jogos do ano
+DELETE {{baseUrl}}/api/journeys/{{username}}/{{year}}

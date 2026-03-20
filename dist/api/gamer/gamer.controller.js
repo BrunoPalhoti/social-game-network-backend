@@ -12,115 +12,50 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GamerController = exports.RawgProxyService = void 0;
+exports.GamerController = void 0;
 const common_1 = require("@nestjs/common");
-class RawgProxyService {
-    baseUrl = 'https://api.rawg.io/api';
-    getApiKey() {
-        return (process.env.RAWG_API_KEY ??
-            process.env.VITE_RAWG_API_KEY ??
-            '').trim();
-    }
-    async fetchRawg(resource, params) {
-        const searchParams = new URLSearchParams();
-        const key = this.getApiKey();
-        if (key)
-            searchParams.set('key', key);
-        for (const [k, v] of Object.entries(params)) {
-            if (!v)
-                continue;
-            searchParams.set(k, v);
-        }
-        const url = `${this.baseUrl}/${resource}?${searchParams.toString()}`;
-        let res;
-        try {
-            res = await fetch(url);
-        }
-        catch {
-            throw new common_1.BadGatewayException('Falha ao consultar RAWG.');
-        }
-        if (!res.ok) {
-            const text = await res.text().catch(() => '');
-            throw new common_1.HttpException(`RAWG error: ${res.status} ${res.statusText} ${text}`.trim(), common_1.HttpStatus.BAD_GATEWAY);
-        }
-        return (await res.json());
-    }
-    async games(params) {
-        return this.fetchRawg('games', {
-            page: String(params.page ?? 1),
-            page_size: String(params.page_size ?? 12),
-            search: params.search?.trim() || undefined,
-            ordering: params.ordering,
-        });
-    }
-    async platforms(params) {
-        return this.fetchRawg('platforms', {
-            page: String(params.page ?? 1),
-            page_size: String(params.page_size ?? 20),
-            ordering: params.ordering,
-        });
-    }
-    async genres(params) {
-        return this.fetchRawg('genres', {
-            page: String(params.page ?? 1),
-            page_size: String(params.page_size ?? 20),
-            ordering: params.ordering,
-        });
-    }
-}
-exports.RawgProxyService = RawgProxyService;
+const games_query_dto_js_1 = require("./dto/games-query.dto.js");
+const rawg_list_query_dto_js_1 = require("./dto/rawg-list-query.dto.js");
+const gamer_service_js_1 = require("./gamer.service.js");
 let GamerController = class GamerController {
-    rawg;
-    constructor(rawg) {
-        this.rawg = rawg;
+    gamerService;
+    constructor(gamerService) {
+        this.gamerService = gamerService;
     }
-    getGames(page, pageSize, search, ordering) {
-        const pageN = page ? Number(page) : undefined;
-        const sizeN = pageSize ? Number(pageSize) : undefined;
-        return this.rawg.games({ page: pageN, page_size: sizeN, search, ordering });
+    getGames(query) {
+        return this.gamerService.games(query);
     }
-    getPlatforms(page, pageSize, ordering) {
-        const pageN = page ? Number(page) : undefined;
-        const sizeN = pageSize ? Number(pageSize) : undefined;
-        return this.rawg.platforms({ page: pageN, page_size: sizeN, ordering });
+    getPlatforms(query) {
+        return this.gamerService.platforms(query);
     }
-    getGenres(page, pageSize, ordering) {
-        const pageN = page ? Number(page) : undefined;
-        const sizeN = pageSize ? Number(pageSize) : undefined;
-        return this.rawg.genres({ page: pageN, page_size: sizeN, ordering });
+    getGenres(query) {
+        return this.gamerService.genres(query);
     }
 };
 exports.GamerController = GamerController;
 __decorate([
     (0, common_1.Get)('games'),
-    __param(0, (0, common_1.Query)('page')),
-    __param(1, (0, common_1.Query)('page_size')),
-    __param(2, (0, common_1.Query)('search')),
-    __param(3, (0, common_1.Query)('ordering')),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, String]),
+    __metadata("design:paramtypes", [games_query_dto_js_1.GamesQueryDto]),
     __metadata("design:returntype", void 0)
 ], GamerController.prototype, "getGames", null);
 __decorate([
     (0, common_1.Get)('platforms'),
-    __param(0, (0, common_1.Query)('page')),
-    __param(1, (0, common_1.Query)('page_size')),
-    __param(2, (0, common_1.Query)('ordering')),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:paramtypes", [rawg_list_query_dto_js_1.RawgListQueryDto]),
     __metadata("design:returntype", void 0)
 ], GamerController.prototype, "getPlatforms", null);
 __decorate([
     (0, common_1.Get)('genres'),
-    __param(0, (0, common_1.Query)('page')),
-    __param(1, (0, common_1.Query)('page_size')),
-    __param(2, (0, common_1.Query)('ordering')),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:paramtypes", [rawg_list_query_dto_js_1.RawgListQueryDto]),
     __metadata("design:returntype", void 0)
 ], GamerController.prototype, "getGenres", null);
 exports.GamerController = GamerController = __decorate([
     (0, common_1.Controller)('api/gamer'),
-    __metadata("design:paramtypes", [RawgProxyService])
+    __metadata("design:paramtypes", [gamer_service_js_1.GamerService])
 ], GamerController);
 //# sourceMappingURL=gamer.controller.js.map

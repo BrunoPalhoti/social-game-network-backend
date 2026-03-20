@@ -55,6 +55,9 @@ let AuthService = class AuthService {
         const users = await this.authRepository.findAllUsersWithPlatformsOrdered();
         return (0, getUsersForAuth_factory_js_1.getUsersForAuthFactory)(users);
     }
+    async getUserById(id) {
+        return this.authRepository.findUserById(id);
+    }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([

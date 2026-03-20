@@ -1,0 +1,1 @@
+{"version":3,"file":"rawg.module.js","sourceRoot":"","sources":["../../../src/api/rawg/rawg.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAwC;AACxC,qDAA8C;AAC9C,uDAAgD;AAMzC,IAAM,UAAU,GAAhB,MAAM,UAAU;CAAG,CAAA;AAAb,gCAAU;qBAAV,UAAU;IAJtB,IAAA,eAAM,EAAC;QACN,SAAS,EAAE,CAAC,2BAAU,EAAE,6BAAW,CAAC;QACpC,OAAO,EAAE,CAAC,6BAAW,CAAC;KACvB,CAAC;GACW,UAAU,CAAG"}
