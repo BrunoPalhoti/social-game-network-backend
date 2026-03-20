@@ -10,7 +10,6 @@ export type ProfileOverrides = {
 };
 
 export type AuthUserSnapshot = {
-  password: string;
   name: string;
   nickname: string;
   platform?: string;
@@ -23,4 +22,3 @@ export type AuthUserSnapshot = {
   bannerUrl?: string | null;
   bannerPosition?: 'top' | 'center' | 'bottom' | number;
 };
-

@@ -22,7 +22,6 @@ function toBannerPosition(bannerPosition) {
 function toAuthSnapshotFromUser(user) {
     const platforms = extractPlatforms(user);
     return {
-        password: user.passwordHash,
         name: user.name,
         nickname: user.nickname,
         platforms: platforms.length > 0

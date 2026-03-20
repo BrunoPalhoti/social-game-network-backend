@@ -16,6 +16,7 @@ const register_factory_js_1 = require("./factory/register/register.factory.js");
 const login_factory_js_1 = require("./factory/login/login.factory.js");
 const getUsersForAuth_factory_js_1 = require("./factory/getUsersForAuth/getUsersForAuth.factory.js");
 const toAuthSnapshotFromUser_factory_js_1 = require("./factory/toAuthSnapshotFromUser/toAuthSnapshotFromUser.factory.js");
+const password_js_1 = require("./password.js");
 let AuthService = class AuthService {
     authRepository;
     constructor(authRepository) {
@@ -30,10 +31,11 @@ let AuthService = class AuthService {
         if (exists > 0) {
             throw new common_1.HttpException('Username ou e-mail já cadastrado.', common_1.HttpStatus.CONFLICT);
         }
+        const passwordHash = await (0, password_js_1.hashPassword)(password);
         await this.authRepository.createUser({
             username,
             email,
-            passwordHash: password,
+            passwordHash,
             name: username,
             nickname: username,
         });
@@ -45,7 +47,8 @@ let AuthService = class AuthService {
         if (!user) {
             throw new common_1.HttpException('Usuário ou senha inválidos.', 401);
         }
-        if (user.passwordHash !== password) {
+        const passwordOk = await (0, password_js_1.verifyPassword)(password, user.passwordHash);
+        if (!passwordOk) {
             throw new common_1.HttpException('Usuário ou senha inválidos.', 401);
         }
         const snapshot = (0, toAuthSnapshotFromUser_factory_js_1.toAuthSnapshotFromUser)(user);

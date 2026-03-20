@@ -29,7 +29,6 @@ export function toAuthSnapshotFromUser(user: User): AuthUserSnapshot {
   const platforms = extractPlatforms(user);
 
   return {
-    password: user.passwordHash,
     name: user.name,
     nickname: user.nickname,
     platforms:
@@ -48,4 +47,3 @@ export function toAuthSnapshotFromUser(user: User): AuthUserSnapshot {
     bannerPosition: toBannerPosition(user.bannerPosition),
   };
 }
-
