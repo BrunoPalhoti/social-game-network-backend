@@ -3,7 +3,7 @@ import { User } from '../../db/entities/User';
 export declare class AuthRepository {
     private readonly usersRepo;
     constructor(usersRepo: Repository<User>);
-    countUsersByUsernameOrEmail(username: string, email: string): Promise<number>;
+    countUsersByUsernameOrEmail(username: string, email: string): Promise<any>;
     createUser(input: {
         username: string;
         email: string;
